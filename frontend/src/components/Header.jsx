@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Menu, X, User, LogOut, Search, Heart, Sparkles } from 'lucide-react';
+import { ShoppingCart, Menu, X, User, LogOut, Search, Heart } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -37,12 +37,6 @@ const Header = () => {
 
   return (
     <div className="w-full relative top-0 z-[1000]">
-      {/* Premium Top Announcement */}
-      <div className="bg-[#1a2e1a] text-[#d4af37] py-2 px-3 sm:px-6 lg:px-8 text-[8px] sm:text-[10px] flex justify-center items-center font-black tracking-[0.18em] sm:tracking-[0.3em] uppercase border-b border-white/5 relative z-[101]">
-        <Sparkles className="w-2.5 h-2.5 mr-2 sm:w-3 sm:h-3 sm:mr-3 animate-pulse shrink-0" />
-        <p className="leading-tight text-center">Curating the World's Finest Dry Fruits - Complimentary Global Logistics</p>
-      </div>
-
       <header 
         className={`fixed w-full top-0 left-0 z-[1000] transition-all duration-500 ${
           isScrolled 
