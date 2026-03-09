@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Menu, X, User, LogOut, LogIn, Search, Heart, Sparkles } from 'lucide-react';
+import { ShoppingCart, Menu, X, User, LogOut, Search, Heart, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -36,18 +36,18 @@ const Header = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <div className="w-full relative top-0 z-[100]">
+    <div className="w-full relative top-0 z-[1000]">
       {/* Premium Top Announcement */}
-      <div className="bg-[#1a2e1a] text-[#d4af37] py-2.5 px-4 sm:px-6 lg:px-8 text-[9px] sm:text-[10px] flex justify-center items-center font-black tracking-[0.3em] uppercase border-b border-white/5 relative z-[101]">
-        <Sparkles className="w-3 h-3 mr-3 animate-pulse" />
-        <p>Curating the World's Finest Dry Fruits • Complimentary Global Logistics</p>
+      <div className="bg-[#1a2e1a] text-[#d4af37] py-2 px-3 sm:px-6 lg:px-8 text-[8px] sm:text-[10px] flex justify-center items-center font-black tracking-[0.18em] sm:tracking-[0.3em] uppercase border-b border-white/5 relative z-[101]">
+        <Sparkles className="w-2.5 h-2.5 mr-2 sm:w-3 sm:h-3 sm:mr-3 animate-pulse shrink-0" />
+        <p className="leading-tight text-center">Curating the World's Finest Dry Fruits - Complimentary Global Logistics</p>
       </div>
 
       <header 
-        className={`fixed w-full transition-all duration-500 ${
+        className={`fixed w-full top-0 left-0 z-[1000] transition-all duration-500 ${
           isScrolled 
-          ? 'bg-white top-0 backdrop-blur-xl h-20 shadow-xl border-b border-stone-100' 
-          : 'bg-white backdrop-blur-sm h-24 sm:h-28'
+          ? 'bg-white h-16 sm:h-20 shadow-xl border-b border-stone-100' 
+          : 'bg-white h-20 sm:h-28 border-b border-stone-100'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
@@ -62,7 +62,7 @@ const Header = () => {
                 <img 
                   src="/Swarnaratna_Logo.jpeg" 
                   alt="Swarnaratna Logo" 
-                  className="h-16 sm:h-24 w-auto object-contain transition-all duration-500 group-hover:scale-105"
+                  className="h-12 sm:h-24 w-auto object-contain transition-all duration-500 group-hover:scale-105"
                 />
               </motion.div>
             </Link>
@@ -88,9 +88,9 @@ const Header = () => {
               {/* Search Toggle */}
               <button 
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="p-3 text-emerald-950 hover:bg-stone-50 rounded-full transition-all duration-300 hover:rotate-90"
+                className="p-2.5 sm:p-3 text-emerald-950 hover:bg-stone-50 rounded-full transition-all duration-300 hover:rotate-90"
               >
-                <Search className="w-5 h-5" />
+                <Search className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
               {/* Desktop User Section */}
@@ -122,9 +122,9 @@ const Header = () => {
               {/* Cart */}
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-3 bg-emerald-950 text-[#d4af37] rounded-full transition-all duration-500 hover:scale-110 shadow-lg group"
+                className="relative p-2.5 sm:p-3 bg-emerald-950 text-[#d4af37] rounded-full transition-all duration-500 hover:scale-110 shadow-lg group"
               >
-                <ShoppingCart className="w-4 h-4" />
+                <ShoppingCart className="w-4 h-4 sm:w-5 sm:h-5" />
                 {totalItems > 0 && (
                   <span className="absolute -top-1 -right-1 bg-[#d4af37] text-emerald-950 text-[8px] rounded-full w-4 h-4 flex items-center justify-center font-black">
                     {totalItems}
@@ -135,9 +135,9 @@ const Header = () => {
               {/* Mobile menu button */}
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden p-3 text-emerald-950 hover:bg-stone-50 rounded-full transition-colors"
+                className="lg:hidden p-2.5 sm:p-3 text-emerald-950 hover:bg-stone-50 rounded-full transition-colors"
               >
-                {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
               </button>
             </div>
           </div>
@@ -186,26 +186,26 @@ const Header = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsMenuOpen(false)}
-                className="fixed inset-0 bg-emerald-950/40 backdrop-blur-md z-[110] lg:hidden"
+                className="fixed inset-0 bg-black/95 backdrop-blur-md z-[1100] lg:hidden"
               />
               <motion.div 
                 initial={{ x: '100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                className="fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-[#1a2e1a] z-[120] lg:hidden p-10 shadow-2xl flex flex-col"
+                className="fixed right-0 top-0 bottom-0 w-[70%] sm:w-[60%] max-w-xs bg-[#102417] z-[1200] lg:hidden px-8 py-16 shadow-2xl border-l border-white/10 flex flex-col"
               >
-                <div className="flex justify-between items-center mb-20">
-                  <img src="/Swarnaratna_Logo.png" className="h-20 w-auto" alt="Logo" />
+                <div className="flex justify-between items-center mb-16">
+                  <img src="/Swarnaratna_Logo.jpeg" className="h-12 w-auto object-contain" alt="Logo" />
                   <button 
                     onClick={() => setIsMenuOpen(false)}
-                    className="p-3 text-[#d4af37] border border-[#d4af37]/20 rounded-full hover:rotate-90 transition-transform duration-500"
+                    className="p-2 text-[#d4af37] border border-[#d4af37]/20 rounded-full"
                   >
-                    <X className="w-6 h-6" />
+                    <X className="w-5 h-5" />
                   </button>
                 </div>
                 
-                <nav className="flex-1 space-y-10">
+                <nav className="flex-1 space-y-8">
                   {navigation.map((item, idx) => (
                     <motion.div
                       key={item.name}
@@ -216,8 +216,8 @@ const Header = () => {
                       <Link
                         to={item.href}
                         onClick={() => setIsMenuOpen(false)}
-                        className={`block text-4xl font-black uppercase tracking-tighter transition-colors ${
-                          isActive(item.href) ? 'text-[#d4af37]' : 'text-stone-500 hover:text-white'
+                        className={`block text-base font-bold uppercase tracking-[0.2em] transition-colors ${
+                          isActive(item.href) ? 'text-[#d4af37]' : 'text-white/90 hover:text-[#d4af37]'
                         }`}
                       >
                         {item.name}
@@ -226,24 +226,24 @@ const Header = () => {
                   ))}
                 </nav>
 
-                <div className="pt-12 border-t border-white/5 space-y-8">
+                <div className="pt-10 border-t border-white/5 space-y-8">
                   {user ? (
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col space-y-4">
                       <Link to="/profile" onClick={() => setIsMenuOpen(false)} className="text-[#d4af37] font-black uppercase tracking-[0.2em] text-[10px]">Registry: {user.name}</Link>
-                      <button onClick={logout} className="text-red-400 hover:text-red-500 font-black uppercase tracking-[0.2em] text-[10px]">Sign Out</button>
+                      <button onClick={logout} className="text-red-400 hover:text-red-500 font-black uppercase tracking-[0.2em] text-[10px] text-left">Sign Out</button>
                     </div>
                   ) : (
                     <Link 
                       to="/login" 
                       onClick={() => setIsMenuOpen(false)} 
-                      className="flex items-center justify-center w-full bg-[#d4af37] text-emerald-950 py-5 px-6 text-[11px] font-black uppercase tracking-[0.3em] hover:bg-white transition-all duration-500 shadow-2xl"
+                      className="flex items-center justify-center w-full bg-[#d4af37] text-emerald-950 py-4 px-6 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white transition-all duration-500 shadow-2xl"
                     >
                       Authenticate
                     </Link>
                   )}
-                  <div className="flex justify-center space-x-6">
-                    <Heart className="w-5 h-5 text-stone-600" />
-                    <User className="w-5 h-5 text-stone-600" />
+                  <div className="flex justify-start space-x-6">
+                    <Heart className="w-5 h-5 text-white/40" />
+                    <User className="w-5 h-5 text-white/40" />
                   </div>
                 </div>
               </motion.div>
@@ -251,7 +251,7 @@ const Header = () => {
           )}
         </AnimatePresence>
       </header>
-      <div className={`h-24 sm:h-28 transition-all ${isScrolled ? 'h-20' : ''}`} />
+      <div className={`h-20 sm:h-28 transition-all ${isScrolled ? 'h-16 sm:h-20' : ''}`} />
       
       {/* Global Components */}
       <CartDrawer />
@@ -260,3 +260,4 @@ const Header = () => {
 };
 
 export default Header;
+
